@@ -1,10 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { NavbarComponent } from 'src/app/shared/navbar/navbar.component';
 import { FooterComponent } from 'src/app/shared/footer/footer.component';
 import { Quote } from 'src/app/models/quote';
 import { QuoteService } from 'src/app/services/quote.service';
 import { Subscription } from 'rxjs';
+import * as htmlToImage from 'html-to-image';
+import { saveAs } from 'file-saver';
 
 @Component({
   selector: 'app-home',
@@ -18,6 +20,8 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
+
+  @ViewChild('allDiv') allDiv: ElementRef;
 
   emojis =  ["😃","😍","😎","😏","🙂","🙋‍♀️","🆗","💎","🌝","😘","✌","🙌","🔥","☀","🎈","🌹","💄","🎀","🏁","🍀","👀","💝","💙","👌","❤","💪","🍸","🔑","💖","🌟","🎉","🌺","🎶","🏆","🍓","💘","💜","👊","💋","😘","🙏","👋","💃","💎","🌙","🎁","⛄","🌊","⛵","💰","💛","💚"]
   emoji = "";
@@ -44,11 +48,19 @@ export class HomeComponent implements OnInit {
       },
       error: err => console.error('An error occurred', err)
     });
-  }
 
+  }
 
   getRandomInt(max):number {
     return Math.floor(Math.random() * max);
   }
+
+  downloadImage(){
+    htmlToImage.toBlob(this.allDiv.nativeElement)
+      .then(function (blob) {
+        saveAs(blob, `icareforyou.png`);
+      });
+  }
+
 
 }
