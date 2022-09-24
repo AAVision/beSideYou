@@ -1,0 +1,20 @@
+body{
+  background: #111827;
+}
+.emoji{
+  position: absolute;
+  top: -20px;
+  right: -10px;
+  background: #1d2c67;
+  border:1px dashed #FFF;
+  padding:10px;
+  box-sizing: border-box;
+  border-radius: 50%;
+}
+
+.mainn{
+  background-image: url(../../../assets/img/love.png);
+  background-attachment: fixed;
+  background-position: center top;
+  background-size: 40%; background-repeat: no-repeat;
+}
