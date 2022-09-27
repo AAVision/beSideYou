@@ -62,5 +62,10 @@ export class HomeComponent implements OnInit {
       });
   }
 
+  speakText(){
+    let utterance = new SpeechSynthesisUtterance(this.quote?.text + 'By ' + this.quote?.from);
+    speechSynthesis.speak(utterance);
+  }
+
 
 }
